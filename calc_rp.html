@@ -233,13 +233,13 @@ function yyparse()
         case 5:
 { yyval = yyastk[yysp-(1-1)]; } break;
         case 6:
-{ yyval = yyastk[yysp-(3-1)] + yyastk[yysp-(3-3)]; } break;
+{ yyval = yyastk[yysp-(3-1)] + yyastk[yysp-(3-2)]; } break;
         case 7:
-{ yyval = yyastk[yysp-(3-1)] - yyastk[yysp-(3-3)]; } break;
+{ yyval = yyastk[yysp-(3-1)] - yyastk[yysp-(3-2)]; } break;
         case 8:
-{ yyval = yyastk[yysp-(3-1)] * yyastk[yysp-(3-3)]; } break;
+{ yyval = yyastk[yysp-(3-1)] * yyastk[yysp-(3-2)]; } break;
         case 9:
-{ yyval = yyastk[yysp-(3-1)] / yyastk[yysp-(3-3)]; } break;
+{ yyval = yyastk[yysp-(3-1)] / yyastk[yysp-(3-2)]; } break;
         }
         /* Goto - shift nonterminal */
         yysp -= yyl;

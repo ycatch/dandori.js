@@ -262,7 +262,7 @@ function yyparse()
         case 15:
 { yyval = yyastk[yysp-(1-1)]; } break;
         case 16:
-{ yyval = calc_vars[yyastk[yysp-(1-1)]]; } break;
+{ ; yyval = calc_vars[yyastk[yysp-(1-1)]]; } break;
         }
         /* Goto - shift nonterminal */
         yysp -= yyl;
@@ -422,6 +422,7 @@ function setAnswer(ans) {
 }
 
 function clearAnswer() {
+  //calc_vars = {};
   answers = "";
   setAnswer(answers);
 }

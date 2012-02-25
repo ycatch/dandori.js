@@ -242,7 +242,7 @@ function yyparse()
         case 5:
 { yyval = "(empty line ignored)<br>"; } break;
         case 6:
-{ calc_vars[yyastk[yysp-(3-1)]] = yyastk[yysp-(3-3)]; } break;
+{ calc_vars['$1'] = yyastk[yysp-(3-3)]; } break;
         case 7:
 { yyval = ""; } break;
         case 8:
@@ -262,7 +262,7 @@ function yyparse()
         case 15:
 { yyval = yyastk[yysp-(1-1)]; } break;
         case 16:
-{ ; yyval = calc_vars[yyastk[yysp-(1-1)]]; } break;
+{ yyval = calc_vars['$1']; } break;
         }
         /* Goto - shift nonterminal */
         yysp -= yyl;
@@ -422,7 +422,6 @@ function setAnswer(ans) {
 }
 
 function clearAnswer() {
-  //calc_vars = {};
   answers = "";
   setAnswer(answers);
 }

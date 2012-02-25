@@ -1,5 +1,5 @@
 /* Calculator in kmyacc+JavaScript. */
-/* enhanced */
+/* enhanced multi lines 2012-02-25*/
 
 %{
 <html>
@@ -24,7 +24,7 @@ lines:	/* empty */
         | lines line { $$ = $1 + $2; }
         ;
 
-line	: expr  { setAnswer($1 + "<br>"); }
+line	: expr  { answers = answers + $1 + "<br>"; setAnswer(answers); }
 	| '\n' { $$ = "(empty line ignored)<br>"; }
 	| error { $$ = ""; }
 	;
@@ -46,6 +46,7 @@ expr	: expr '+' expr { $$ = $1 + $3; }
 var buffer;
 var token;
 var toktype;
+var answers;
 
 
 function isletter(c)
@@ -137,8 +138,14 @@ function setAnswer(ans) {
   writeDivHTML(getDivFromName("answer"), ans);
 }
 
+function clearAnswer() {
+  answers = "";
+  setAnswer(answers);
+}
+
 function main() {
   buffer = document.compiledtext.one.value;
+  clearAnswer();
   yyparse();
   return false;
 }
@@ -149,6 +156,7 @@ function main() {
 <p>Enter expression to compute eg.+, -, *, /, %, ^</p>:
 <form name="compiledtext" id="compiledtext" onsubmit="return main()">
 <textarea name="one" id="one" rows="4" cols="40"></textarea>
+<input name="clear" type="button" value="CLEAR" onclick="clearAnswer()">
 <input name="answer" type="button" value="ANSWER" onclick="main()">
 </form>
 <hr>

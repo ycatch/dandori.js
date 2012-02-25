@@ -234,7 +234,7 @@ function yyparse()
         case 3:
 { yyval = yyastk[yysp-(2-1)] + yyastk[yysp-(2-2)]; } break;
         case 4:
-{ setAnswer(yyastk[yysp-(1-1)] + "<br>"); } break;
+{ answers = answers + yyastk[yysp-(1-1)] + "<br>"; setAnswer(answers); } break;
         case 5:
 { yyval = "(empty line ignored)<br>"; } break;
         case 6:
@@ -320,6 +320,7 @@ function yyparse()
 var buffer;
 var token;
 var toktype;
+var answers;
 
 
 function isletter(c)
@@ -411,8 +412,14 @@ function setAnswer(ans) {
   writeDivHTML(getDivFromName("answer"), ans);
 }
 
+function clearAnswer() {
+  answers = "";
+  setAnswer(answers);
+}
+
 function main() {
   buffer = document.compiledtext.one.value;
+  clearAnswer();
   yyparse();
   return false;
 }
@@ -423,6 +430,7 @@ function main() {
 <p>Enter expression to compute eg.+, -, *, /, %, ^</p>:
 <form name="compiledtext" id="compiledtext" onsubmit="return main()">
 <textarea name="one" id="one" rows="4" cols="40"></textarea>
+<input name="clear" type="button" value="CLEAR" onclick="clearAnswer()">
 <input name="answer" type="button" value="ANSWER" onclick="main()">
 </form>
 <hr>

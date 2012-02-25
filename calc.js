@@ -66,95 +66,100 @@ function yyflush()
 
 
 var yytranslate = [
-      0,    9,    9,    9,    9,    9,    9,    9,    9,    9,
-      9,    9,    9,    9,    9,    9,    9,    9,    9,    9,
-      9,    9,    9,    9,    9,    9,    9,    9,    9,    9,
-      9,    9,    9,    9,    9,    9,    9,    9,    9,    9,
-      7,    8,    5,    3,    9,    4,    9,    6,    9,    9,
-      9,    9,    9,    9,    9,    9,    9,    9,    9,    9,
-      9,    9,    9,    9,    9,    9,    9,    9,    9,    9,
-      9,    9,    9,    9,    9,    9,    9,    9,    9,    9,
-      9,    9,    9,    9,    9,    9,    9,    9,    9,    9,
-      9,    9,    9,    9,    9,    9,    9,    9,    9,    9,
-      9,    9,    9,    9,    9,    9,    9,    9,    9,    9,
-      9,    9,    9,    9,    9,    9,    9,    9,    9,    9,
-      9,    9,    9,    9,    9,    9,    9,    9,    9,    9,
-      9,    9,    9,    9,    9,    9,    9,    9,    9,    9,
-      9,    9,    9,    9,    9,    9,    9,    9,    9,    9,
-      9,    9,    9,    9,    9,    9,    9,    9,    9,    9,
-      9,    9,    9,    9,    9,    9,    9,    9,    9,    9,
-      9,    9,    9,    9,    9,    9,    9,    9,    9,    9,
-      9,    9,    9,    9,    9,    9,    9,    9,    9,    9,
-      9,    9,    9,    9,    9,    9,    9,    9,    9,    9,
-      9,    9,    9,    9,    9,    9,    9,    9,    9,    9,
-      9,    9,    9,    9,    9,    9,    9,    9,    9,    9,
-      9,    9,    9,    9,    9,    9,    9,    9,    9,    9,
-      9,    9,    9,    9,    9,    9,    9,    9,    9,    9,
-      9,    9,    9,    9,    9,    9,    9,    9,    9,    9,
-      9,    9,    9,    9,    9,    9,    1,    2,    9
+      0,   14,   14,   14,   14,   14,   14,   14,   14,   14,
+     10,   14,   14,   14,   14,   14,   14,   14,   14,   14,
+     14,   14,   14,   14,   14,   14,   14,   14,   14,   14,
+     14,   14,   14,   14,   14,   14,   14,    8,   14,   14,
+     12,   13,    6,    4,   14,    5,   14,    7,   14,   14,
+     14,   14,   14,   14,   14,   14,   14,   14,   14,   14,
+     14,   11,   14,   14,   14,   14,   14,   14,   14,   14,
+     14,   14,   14,   14,   14,   14,   14,   14,   14,   14,
+     14,   14,   14,   14,   14,   14,   14,   14,   14,   14,
+     14,   14,   14,   14,    9,   14,   14,   14,   14,   14,
+     14,   14,   14,   14,   14,   14,   14,   14,   14,   14,
+     14,   14,   14,   14,   14,   14,   14,   14,   14,   14,
+     14,   14,   14,   14,   14,   14,   14,   14,   14,   14,
+     14,   14,   14,   14,   14,   14,   14,   14,   14,   14,
+     14,   14,   14,   14,   14,   14,   14,   14,   14,   14,
+     14,   14,   14,   14,   14,   14,   14,   14,   14,   14,
+     14,   14,   14,   14,   14,   14,   14,   14,   14,   14,
+     14,   14,   14,   14,   14,   14,   14,   14,   14,   14,
+     14,   14,   14,   14,   14,   14,   14,   14,   14,   14,
+     14,   14,   14,   14,   14,   14,   14,   14,   14,   14,
+     14,   14,   14,   14,   14,   14,   14,   14,   14,   14,
+     14,   14,   14,   14,   14,   14,   14,   14,   14,   14,
+     14,   14,   14,   14,   14,   14,   14,   14,   14,   14,
+     14,   14,   14,   14,   14,   14,   14,   14,   14,   14,
+     14,   14,   14,   14,   14,   14,   14,   14,   14,   14,
+     14,   14,   14,   14,   14,   14,    1,    2,    3
   ];
 
-var YYBADCH = 9;
+var YYBADCH = 14;
 var YYMAXLEX = 259;
-var YYTERMS = 9;
-var YYNONTERMS = 4;
+var YYTERMS = 14;
+var YYNONTERMS = 5;
 
 var yyaction = [
-      4,    5,    0,   21,    0,   20,   -3,   15,    3,    0,
-      4,    5,    0,    6,    7
+     37,   -1,   28,    0,   16,   11,   12,   13,   14,    9,
+     10,   26,   36,    9,   10,   14,    0,    0,   35,    8,
+      0,    0,    7
   ];
 
-var YYLAST = 15;
+var YYLAST = 23;
 
 var yycheck = [
-      3,    4,    0,    2,   -1,    8,    0,    1,    7,   -1,
-      3,    4,   -1,    5,    6
+      3,    0,    1,    0,    3,    6,    7,    8,    9,    4,
+      5,   10,    2,    4,    5,    9,   -1,   -1,   13,   11,
+     -1,   -1,   12
   ];
 
 var yybase = [
-      6,   -3,    7,    1,    1,    1,    1,    1,    8,    8,
-      2,    1,    8,    8
+      0,    5,    1,    9,    9,   -1,   -1,   -3,   -3,   -3,
+     -3,   -3,   -3,   -3,   -3,    3,    8,    6,    6,    6,
+      6,    0,   -1,   10,   -1,   -1,    0,    0,   10,   10,
+     10,   10,   10,   10,   10,   10
   ];
 
-var YY2TBLSTATE = 3;
+var YY2TBLSTATE = 15;
 
 var yydefault = [
-  32767,32767,    2,32767,32767,32767,32767,32767,    5,    6,
-  32767
+      2,32767,32767,    4,    6,    8,    9,32767,32767,32767,
+  32767,32767,32767,32767,32767,32767,   16,   10,   11,   12,
+     13
   ];
 
 
 
 var yygoto = [
-      1,    8,    9,   18,   19
+      1,    4,    5,    6,   17,   18,   19,   20
   ];
 
-var YYGLAST = 5;
+var YYGLAST = 8;
 
 var yygcheck = [
-      3,    3,    3,    3,    3
+      4,    4,    4,    4,    4,    4,    4,    4
   ];
 
 var yygbase = [
-      0,    0,    0,   -3
+      0,    0,    0,    0,   -7
   ];
 
 var yygdefault = [
-  -32768,   10,   12,    2
+  -32768,   15,    2,   24,    3
   ];
 
 var yylhs = [
-      0,    1,    2,    2,    2,    3,    3,    3,    3,    3,
-      3
+      0,    1,    2,    2,    3,    3,    3,    3,    4,    4,
+      4,    4,    4,    4,    4,    4,    4
   ];
 
 var yylen = [
-      1,    1,    1,    0,    1,    3,    3,    3,    3,    3,
-      1
+      1,    1,    0,    2,    1,    1,    3,    1,    3,    3,
+      3,    3,    3,    3,    3,    1,    1
   ];
 
-var YYSTATES = 17;
-var YYNLSTATES = 11;
+var YYSTATES = 27;
+var YYNLSTATES = 21;
 var YYINTERRTOK = 1;
 var YYUNEXPECTED = 32767;
 var YYDEFAULT = -32766;
@@ -230,24 +235,34 @@ function yyparse()
         yyval = yyastk[yysp-yyl+1];
         /* Following line will be replaced by reduce actions */
         switch(yyn) {
-        case 2:
-{ setAnswer(yyastk[yysp-(1-1)] + "<br>"); } break;
         case 3:
-{ yyval = "(empty line ignored)<br>"; } break;
+{ yyval = yyastk[yysp-(2-1)] + yyastk[yysp-(2-2)]; } break;
         case 4:
-{ yyval = ""; } break;
+{ answers = answers + yyastk[yysp-(1-1)] + "<br>"; setAnswer(answers); } break;
         case 5:
-{ yyval = yyastk[yysp-(3-1)] + yyastk[yysp-(3-3)]; } break;
+{ yyval = "(empty line ignored)<br>"; } break;
         case 6:
-{ yyval = yyastk[yysp-(3-1)] - yyastk[yysp-(3-3)]; } break;
+{ calc_vars[yyastk[yysp-(3-1)]] = yyastk[yysp-(3-3)]; } break;
         case 7:
-{ yyval = yyastk[yysp-(3-1)] * yyastk[yysp-(3-3)]; } break;
+{ yyval = ""; } break;
         case 8:
-{ yyval = yyastk[yysp-(3-1)] / yyastk[yysp-(3-3)]; } break;
+{ yyval = yyastk[yysp-(3-1)] + yyastk[yysp-(3-3)]; } break;
         case 9:
-{ yyval = yyastk[yysp-(3-2)]; } break;
+{ yyval = yyastk[yysp-(3-1)] - yyastk[yysp-(3-3)]; } break;
         case 10:
+{ yyval = yyastk[yysp-(3-1)] * yyastk[yysp-(3-3)]; } break;
+        case 11:
+{ yyval = yyastk[yysp-(3-1)] / yyastk[yysp-(3-3)]; } break;
+        case 12:
+{ yyval = yyastk[yysp-(3-1)] % yyastk[yysp-(3-3)]; } break;
+        case 13:
+{ yyval = Math.pow(yyastk[yysp-(3-1)],yyastk[yysp-(3-3)]); } break;
+        case 14:
+{ yyval = yyastk[yysp-(3-2)]; } break;
+        case 15:
 { yyval = yyastk[yysp-(1-1)]; } break;
+        case 16:
+{ yyval = calc_vars[yyastk[yysp-(1-1)]]; } break;
         }
         /* Goto - shift nonterminal */
         yysp -= yyl;
@@ -313,6 +328,8 @@ function yyparse()
 var buffer;
 var token;
 var toktype;
+var answers = "";
+var calc_vars = {};
 
 
 function isletter(c)
@@ -404,8 +421,14 @@ function setAnswer(ans) {
   writeDivHTML(getDivFromName("answer"), ans);
 }
 
+function clearAnswer() {
+  answers = "";
+  setAnswer(answers);
+}
+
 function main() {
   buffer = document.compiledtext.one.value;
+  clearAnswer();
   yyparse();
   return false;
 }
@@ -413,10 +436,11 @@ function main() {
 </script>
 </head>
 <body>
-Enter expression to compute:
+<p>Enter expression to compute eg.+, -, *, /, %, ^</p>:
 <form name="compiledtext" id="compiledtext" onsubmit="return main()">
-<input type="text" name="one" id="one" size=100>
+<textarea name="one" id="one" rows="4" cols="40"></textarea>
 <input name="answer" type="button" value="ANSWER" onclick="main()">
+<input name="clear" type="reset" value="CLEAR" onclick="clearAnswer()">
 </form>
 <hr>
 <div id="answer">

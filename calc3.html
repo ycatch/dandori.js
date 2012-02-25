@@ -430,8 +430,8 @@ function main() {
 <p>Enter expression to compute eg.+, -, *, /, %, ^</p>:
 <form name="compiledtext" id="compiledtext" onsubmit="return main()">
 <textarea name="one" id="one" rows="4" cols="40"></textarea>
-<input name="clear" type="button" value="CLEAR" onclick="clearAnswer()">
 <input name="answer" type="button" value="ANSWER" onclick="main()">
+<input name="clear" type="reset" value="CLEAR" onclick="clearAnswer()">
 </form>
 <hr>
 <div id="answer">

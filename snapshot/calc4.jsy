@@ -10,7 +10,8 @@
 %}
 
 
-%token NUMBER IDENTIFIER
+%token NUMBER
+%token IDENTIFIER
 
 %left '+' '-'
 %left '*' '/' '%'
@@ -142,7 +143,6 @@ function setAnswer(ans) {
 }
 
 function clearAnswer() {
-  //calc_vars = {};
   answers = "";
   setAnswer(answers);
 }

@@ -358,6 +358,7 @@ function yylex()
     }
     token = buffer.substr(0, i);
     buffer = buffer.substr(i);
+    yylval = token - 0; 
     return IDENTIFIER;
   } else if (isdigit(buffer.charAt(0))) {
     var i;

@@ -24,7 +24,7 @@ lines:	/* empty */
         | lines line { $$ = $1 + $2; }
         ;
 
-line	: expr  { answers = answers + $1 + "<br>"; setAnswer(answers); }
+line	: expr  { answers += $1 + "<br>"; setAnswer(answers); }
 	| '\n' { $$ = "(empty line ignored)<br>"; }
 	| IDENTIFIER '=' expr { calc_vars[$1] = $3; }
 	| error { $$ = ""; }
@@ -79,7 +79,7 @@ function yylex()
     }
     token = buffer.substr(0, i);
     buffer = buffer.substr(i);
-    yylval = token - 0; 
+    yylval = token + ""; 
     return IDENTIFIER;
   } else if (isdigit(buffer.charAt(0))) {
     var i;
@@ -144,7 +144,7 @@ function setAnswer(ans) {
 }
 
 function clearAnswer() {
-  //calc_vars = {};
+  calc_vars = {};
   answers = "";
   setAnswer(answers);
 }

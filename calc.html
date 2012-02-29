@@ -238,7 +238,7 @@ function yyparse()
         case 3:
 { yyval = yyastk[yysp-(2-1)] + yyastk[yysp-(2-2)]; } break;
         case 4:
-{ answers = answers + yyastk[yysp-(1-1)] + "<br>"; setAnswer(answers); } break;
+{ answers += yyastk[yysp-(1-1)] + "<br>"; setAnswer(answers); } break;
         case 5:
 { yyval = "(empty line ignored)<br>"; } break;
         case 6:
@@ -359,7 +359,7 @@ function yylex()
     }
     token = buffer.substr(0, i);
     buffer = buffer.substr(i);
-    yylval = token - 0; 
+    yylval = token + ""; 
     return IDENTIFIER;
   } else if (isdigit(buffer.charAt(0))) {
     var i;
@@ -424,7 +424,7 @@ function setAnswer(ans) {
 }
 
 function clearAnswer() {
-  //calc_vars = {};
+  calc_vars = {};
   answers = "";
   setAnswer(answers);
 }

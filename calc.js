@@ -327,6 +327,7 @@ function yyparse()
 
 var buffer;
 var token;
+var yylval;
 var toktype;
 var answers = "";
 var calc_vars = {};

@@ -1,9 +1,4 @@
 
-<html>
-<head>
-<title>Calculator</title>
-<script type="text/javascript">
-<!--
 
 /* Prototype file of JavaScript parser.
  * Written by MORI Koichiro
@@ -446,19 +441,4 @@ function main() {
   yyparse();
   return false;
 }
-// -->
-</script>
-</head>
-<body>
-<p>Enter expression to compute eg.+, -, *, /, %, ^</p>:
-<form name="compiledtext" id="compiledtext" onsubmit="return main()">
-<textarea name="one" id="one" rows="4" cols="40"></textarea>
-<input name="answer" type="button" value="ANSWER" onclick="main()">
-<input name="clear" type="reset" value="CLEAR" onclick="clearAnswer()">
-</form>
-<hr>
-<div id="answer">
-</div>
-<hr>
-</body>
-</html>
+

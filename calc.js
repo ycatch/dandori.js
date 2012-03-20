@@ -4,6 +4,11 @@
 <title>Calculator</title>
 <script type="text/javascript">
 <!--
+var func_vars = {
+		test: function(num) { return num;},
+		sqr: function(num) { return Math.sqrt(num)},
+		rnd: function(num) { return Math.random() * num}
+	};
 
 /* Prototype file of JavaScript parser.
  * Written by MORI Koichiro
@@ -100,66 +105,67 @@ var YYTERMS = 14;
 var YYNONTERMS = 5;
 
 var yyaction = [
-     37,   -1,   28,    0,   16,   11,   12,   13,   14,    9,
-     10,   26,   36,    9,   10,   14,    0,    0,   35,    8,
-      0,    0,    7
+     11,   12,   13,   14,   15,   16,   -1,   31,   19,   17,
+     41,-32766,-32766,    0,    9,   38,   29,   39,   16,    0,
+      8,    0,   10
   ];
 
 var YYLAST = 23;
 
 var yycheck = [
-      3,    0,    1,    0,    3,    6,    7,    8,    9,    4,
-      5,   10,    2,    4,    5,    9,   -1,   -1,   13,   11,
-     -1,   -1,   12
+      4,    5,    6,    7,    8,    9,    0,    1,    3,    3,
+      2,    4,    5,    0,   11,   13,   10,   13,    9,   -1,
+     12,   -1,   12
   ];
 
 var yybase = [
-      0,    5,    1,    9,    9,   -1,   -1,   -3,   -3,   -3,
-     -3,   -3,   -3,   -3,   -3,    3,    8,    6,    6,    6,
-      6,    0,   -1,   10,   -1,   -1,    0,    0,   10,   10,
-     10,   10,   10,   10,   10,   10
+      0,    2,    4,    6,   -4,   -4,    7,    7,    5,    5,
+      5,    5,    5,    5,    5,    5,    5,    3,   13,   10,
+      9,    9,    9,    9,    0,   -4,   -4,    8,    0,    0,
+     -4,   -4,    8,    8,    8,    8,    8,    8,    8,    8,
+      8,   10
   ];
 
-var YY2TBLSTATE = 15;
+var YY2TBLSTATE = 18;
 
 var yydefault = [
-      2,32767,32767,    4,    6,    8,    9,32767,32767,32767,
-  32767,32767,32767,32767,32767,32767,   16,   10,   11,   12,
-     13
+      2,32767,32767,32767,    4,    6,    8,    9,32767,32767,
+  32767,32767,32767,32767,32767,32767,32767,   16,32767,   16,
+     10,   11,   12,   13
   ];
 
 
 
 var yygoto = [
-      1,    4,    5,    6,   17,   18,   19,   20
+      1,    5,    2,    6,    7,   20,   21,   22,   23
   ];
 
-var YYGLAST = 8;
+var YYGLAST = 9;
 
 var yygcheck = [
-      4,    4,    4,    4,    4,    4,    4,    4
+      4,    4,    4,    4,    4,    4,    4,    4,    4
   ];
 
 var yygbase = [
-      0,    0,    0,    0,   -7
+      0,    0,    0,    0,   -8
   ];
 
 var yygdefault = [
-  -32768,   15,    2,   24,    3
+  -32768,   18,    3,   27,    4
   ];
 
 var yylhs = [
       0,    1,    2,    2,    3,    3,    3,    3,    4,    4,
-      4,    4,    4,    4,    4,    4,    4
+      4,    4,    4,    4,    4,    4,    4,    4
   ];
 
 var yylen = [
       1,    1,    0,    2,    1,    1,    3,    1,    3,    3,
-      3,    3,    3,    3,    3,    1,    1
+      3,    3,    3,    3,    3,    4,    1,    1
   ];
 
-var YYSTATES = 27;
-var YYNLSTATES = 21;
+var YYSTATES = 30;
+var YYNLSTATES = 24;
 var YYINTERRTOK = 1;
 var YYUNEXPECTED = 32767;
 var YYDEFAULT = -32766;
@@ -260,9 +266,11 @@ function yyparse()
         case 14:
 { yyval = yyastk[yysp-(3-2)]; } break;
         case 15:
-{ yyval = yyastk[yysp-(1-1)]; } break;
+{ yyval = func_vars[yyastk[yysp-(4-1)]](yyastk[yysp-(4-3)]); } break;
         case 16:
 { yyval = calc_vars[yyastk[yysp-(1-1)]]; } break;
+        case 17:
+{ yyval = yyastk[yysp-(1-1)]; } break;
         }
         /* Goto - shift nonterminal */
         yysp -= yyl;

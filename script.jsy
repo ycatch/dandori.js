@@ -3,6 +3,7 @@
 %{
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>tiny script</title>
 <script type="text/javascript">
 <!--
@@ -147,10 +148,11 @@ function main() {
 </script>
 </head>
 <body>
-Enter expression to compute:
+<p>Enter your script</p>
 <form name="compiledtext" id="compiledtext" onsubmit="return main()">
-<input type="text" name="one" id="one" size=100>
-<input name="answer" type="button" value="ANSWER" onclick="main()">
+<textarea name="one" id="one" rows="4" cols="40"></textarea>
+<input name="answer" type="button" value="RUN" onclick="main()">
+<input name="clear" type="reset" value="CLEAR" onclick="clearAnswer()">
 </form>
 <hr>
 <div id="answer">

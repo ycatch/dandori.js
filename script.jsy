@@ -10,7 +10,7 @@
 %}
 
 
-%token NUMBER IDENT STRING
+%token NUMBER IDENT STRING COMMENT
 
 %left '+' '-'
 %left '*' '/'
@@ -18,7 +18,12 @@
 %%
 
 program	:
-		| program stmt
+		| program line {}
+		;
+		
+line	: stmt {}
+		| stmt COMMENT {}
+		| COMMENT {}
 		;
 
 stmt	: funcall {}
@@ -49,50 +54,58 @@ var buffer;
 var token;
 var toktype;
 
+function yylex() {
+	//cut for space and tabs
+	var res = buffer.match(/^\s+/);
+	if (res != null) {
+		buffer = buffer.substr(res[0].length);
+	}
+	//Empty
+	if (buffer.length == 0) {
+		return 0;
+	}
+	
+	//COMMENT
+	res = buffer.match(/^\/+/);
+	if (res != null) {
+		var index = buffer.indexOf("\n");
+		if (index == "-1") {
+			token = buffer;
+		} else {
+			token = buffer.substr(0, index);
+		}
+		buffer = buffer.substr(token.length);
+		return COMMENT;
+	}
 
-function isletter(c)
-{
-  return ('a' <= c && c <= 'z') || ('A' <= c && c <= 'Z');
-}
-
-function isdigit(c)
-{
-  return ('0' <= c && c <= '9');
-}
-
-function yylex()
-{
-  while (buffer != ""
-         && (buffer.charAt(0) == ' ' || buffer.charAt(0) == '\t')) {
-    buffer = buffer.substr(1);
-  }
-  if (buffer.length == 0)
-    return 0;
-  if (isletter(buffer.charAt(0))) {
-    var i;
-    for (i = 0; i < buffer.length; i++) {
-      if (!isletter(buffer.charAt(i)) && !isdigit(buffer.charAt(i)))
-        break;
-    }
-    token = buffer.substr(0, i);
-    buffer = buffer.substr(i);
-    return IDENTIFIER;
-  } else if (isdigit(buffer.charAt(0))) {
-    var i;
-    for (i = 0; i < buffer.length; i++) {
-      if (!isdigit(buffer.charAt(i)))
-        break;
-    }
-    token = buffer.substr(0, i);
-    buffer = buffer.substr(i);
-    yylval = token - 0;
-    return NUMBER;
-  } else {
-    token = buffer.substr(0, 1);
+	//IDENT
+	res = buffer.match(/^[a-zA-Z_]\w+/);
+	if (res != null) {
+		token = res[0];
+		buffer = buffer.substr(res[0].length);
+		return IDENT;
+	}
+	//NUMBER
+	res = buffer.match(/^\d+(\.\d+)?/);
+	if (res != null) {
+		token = res[0];
+		buffer = buffer.substr(res[0].length);
+		yylval = token - 0; //return numeric-data
+		return NUMBER;
+	}
+	//Text String
+	res = buffer.match(/^".*"|'.*'/);
+	if (res != null) {
+		token = res[0].substr(1, res[0].length - 2);
+		buffer = buffer.substr(res[0].length);
+		return STRING;
+	}
+	//Single symbol
+	token = buffer.substr(0, 1);
     buffer = buffer.substr(1);
     return token.charCodeAt(0);
-  }
 }
+
 
 function yyerror(msg) {
   yyprintln(msg);

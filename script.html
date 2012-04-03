@@ -19,6 +19,7 @@ var YYERRTOK = 256;
 var NUMBER = 257;
 var IDENT = 258;
 var STRING = 259;
+var COMMENT = 260;
 
   
 /*
@@ -68,93 +69,94 @@ function yyflush()
 
 
 var yytranslate = [
-      0,    9,    9,    9,    9,    9,    9,    9,    9,    9,
-      9,    9,    9,    9,    9,    9,    9,    9,    9,    9,
-      9,    9,    9,    9,    9,    9,    9,    9,    9,    9,
-      9,    9,    9,    9,    9,    9,    9,    9,    9,    9,
-      5,    6,    9,    9,    7,    9,    9,    9,    9,    9,
-      9,    9,    9,    9,    9,    9,    9,    9,    9,    9,
-      9,    8,    9,    9,    9,    9,    9,    9,    9,    9,
-      9,    9,    9,    9,    9,    9,    9,    9,    9,    9,
-      9,    9,    9,    9,    9,    9,    9,    9,    9,    9,
-      9,    9,    9,    9,    9,    9,    9,    9,    9,    9,
-      9,    9,    9,    9,    9,    9,    9,    9,    9,    9,
-      9,    9,    9,    9,    9,    9,    9,    9,    9,    9,
-      9,    9,    9,    9,    9,    9,    9,    9,    9,    9,
-      9,    9,    9,    9,    9,    9,    9,    9,    9,    9,
-      9,    9,    9,    9,    9,    9,    9,    9,    9,    9,
-      9,    9,    9,    9,    9,    9,    9,    9,    9,    9,
-      9,    9,    9,    9,    9,    9,    9,    9,    9,    9,
-      9,    9,    9,    9,    9,    9,    9,    9,    9,    9,
-      9,    9,    9,    9,    9,    9,    9,    9,    9,    9,
-      9,    9,    9,    9,    9,    9,    9,    9,    9,    9,
-      9,    9,    9,    9,    9,    9,    9,    9,    9,    9,
-      9,    9,    9,    9,    9,    9,    9,    9,    9,    9,
-      9,    9,    9,    9,    9,    9,    9,    9,    9,    9,
-      9,    9,    9,    9,    9,    9,    9,    9,    9,    9,
-      9,    9,    9,    9,    9,    9,    9,    9,    9,    9,
-      9,    9,    9,    9,    9,    9,    1,    2,    3,    4
+      0,   10,   10,   10,   10,   10,   10,   10,   10,   10,
+     10,   10,   10,   10,   10,   10,   10,   10,   10,   10,
+     10,   10,   10,   10,   10,   10,   10,   10,   10,   10,
+     10,   10,   10,   10,   10,   10,   10,   10,   10,   10,
+      6,    7,   10,   10,    8,   10,   10,   10,   10,   10,
+     10,   10,   10,   10,   10,   10,   10,   10,   10,   10,
+     10,    9,   10,   10,   10,   10,   10,   10,   10,   10,
+     10,   10,   10,   10,   10,   10,   10,   10,   10,   10,
+     10,   10,   10,   10,   10,   10,   10,   10,   10,   10,
+     10,   10,   10,   10,   10,   10,   10,   10,   10,   10,
+     10,   10,   10,   10,   10,   10,   10,   10,   10,   10,
+     10,   10,   10,   10,   10,   10,   10,   10,   10,   10,
+     10,   10,   10,   10,   10,   10,   10,   10,   10,   10,
+     10,   10,   10,   10,   10,   10,   10,   10,   10,   10,
+     10,   10,   10,   10,   10,   10,   10,   10,   10,   10,
+     10,   10,   10,   10,   10,   10,   10,   10,   10,   10,
+     10,   10,   10,   10,   10,   10,   10,   10,   10,   10,
+     10,   10,   10,   10,   10,   10,   10,   10,   10,   10,
+     10,   10,   10,   10,   10,   10,   10,   10,   10,   10,
+     10,   10,   10,   10,   10,   10,   10,   10,   10,   10,
+     10,   10,   10,   10,   10,   10,   10,   10,   10,   10,
+     10,   10,   10,   10,   10,   10,   10,   10,   10,   10,
+     10,   10,   10,   10,   10,   10,   10,   10,   10,   10,
+     10,   10,   10,   10,   10,   10,   10,   10,   10,   10,
+     10,   10,   10,   10,   10,   10,   10,   10,   10,   10,
+     10,   10,   10,   10,   10,   10,    1,    2,    3,    4,
+      5
   ];
 
-var YYBADCH = 9;
-var YYMAXLEX = 260;
-var YYTERMS = 9;
-var YYNONTERMS = 7;
+var YYBADCH = 10;
+var YYMAXLEX = 261;
+var YYTERMS = 10;
+var YYNONTERMS = 8;
 
 var yyaction = [
-     18,   17,   19,    0,    1,    0,    5,    2,   12,    3,
-     13
+      1,    0,   12,    3,    5,   17,   13,   22,   21,   23,
+     16,    4
   ];
 
-var YYLAST = 11;
+var YYLAST = 12;
 
 var yycheck = [
-      2,    3,    4,    0,    5,   -1,    3,    8,    6,    7,
-      6
+      6,    0,    5,    9,    3,    7,    5,    2,    3,    4,
+      7,    8
   ];
 
 var yybase = [
-      0,    4,   -2,   -2,    3,   -1,    2,    0,   -2
+      0,   -2,    1,    5,    5,   -6,    3,   -3,    0,    5
   ];
 
 var YY2TBLSTATE = 2;
 
 var yydefault = [
-      1,32767,32767,32767,32767,32767,32767
+      1,32767,32767,32767,32767,32767,32767,    3
   ];
 
 
 
 var yygoto = [
-     16,   15
+     20,   19
   ];
 
 var YYGLAST = 2;
 
 var yygcheck = [
-      6,    6
+      7,    7
   ];
 
 var yygbase = [
-      0,    0,    0,    0,    0,    0,   -2
+      0,    0,    0,    0,    0,    0,    0,   -3
   ];
 
 var yygdefault = [
-  -32768,    4,    9,   10,   11,    6,   14
+  -32768,    2,   10,    7,   14,   15,    6,   18
   ];
 
 var yylhs = [
-      0,    1,    1,    2,    2,    3,    3,    5,    5,    4,
-      6,    6,    6
+      0,    1,    1,    2,    2,    2,    3,    3,    4,    4,
+      6,    6,    5,    7,    7,    7
   ];
 
 var yylen = [
-      1,    0,    2,    1,    1,    4,    3,    1,    3,    3,
-      1,    1,    1
+      1,    0,    2,    1,    2,    1,    1,    1,    4,    3,
+      1,    3,    3,    1,    1,    1
   ];
 
-var YYSTATES = 18;
-var YYNLSTATES = 7;
+var YYSTATES = 21;
+var YYNLSTATES = 8;
 var YYINTERRTOK = 1;
 var YYUNEXPECTED = 32767;
 var YYDEFAULT = -32766;
@@ -230,6 +232,8 @@ function yyparse()
         yyval = yyastk[yysp-yyl+1];
         /* Following line will be replaced by reduce actions */
         switch(yyn) {
+        case 2:
+{} break;
         case 3:
 {} break;
         case 4:
@@ -245,6 +249,12 @@ function yyparse()
         case 9:
 {} break;
         case 10:
+{} break;
+        case 11:
+{} break;
+        case 12:
+{} break;
+        case 13:
 {} break;
         }
         /* Goto - shift nonterminal */
@@ -312,50 +322,58 @@ var buffer;
 var token;
 var toktype;
 
+function yylex() {
+	//cut for space and tabs
+	var res = buffer.match(/^\s+/);
+	if (res != null) {
+		buffer = buffer.substr(res[0].length);
+	}
+	//Empty
+	if (buffer.length == 0) {
+		return 0;
+	}
+	
+	//COMMENT
+	res = buffer.match(/^\/+/);
+	if (res != null) {
+		var index = buffer.indexOf("\n");
+		if (index == "-1") {
+			token = buffer;
+		} else {
+			token = buffer.substr(0, index);
+		}
+		buffer = buffer.substr(token.length);
+		return COMMENT;
+	}
 
-function isletter(c)
-{
-  return ('a' <= c && c <= 'z') || ('A' <= c && c <= 'Z');
-}
-
-function isdigit(c)
-{
-  return ('0' <= c && c <= '9');
-}
-
-function yylex()
-{
-  while (buffer != ""
-         && (buffer.charAt(0) == ' ' || buffer.charAt(0) == '\t')) {
-    buffer = buffer.substr(1);
-  }
-  if (buffer.length == 0)
-    return 0;
-  if (isletter(buffer.charAt(0))) {
-    var i;
-    for (i = 0; i < buffer.length; i++) {
-      if (!isletter(buffer.charAt(i)) && !isdigit(buffer.charAt(i)))
-        break;
-    }
-    token = buffer.substr(0, i);
-    buffer = buffer.substr(i);
-    return IDENTIFIER;
-  } else if (isdigit(buffer.charAt(0))) {
-    var i;
-    for (i = 0; i < buffer.length; i++) {
-      if (!isdigit(buffer.charAt(i)))
-        break;
-    }
-    token = buffer.substr(0, i);
-    buffer = buffer.substr(i);
-    yylval = token - 0;
-    return NUMBER;
-  } else {
-    token = buffer.substr(0, 1);
+	//IDENT
+	res = buffer.match(/^[a-zA-Z_]\w+/);
+	if (res != null) {
+		token = res[0];
+		buffer = buffer.substr(res[0].length);
+		return IDENT;
+	}
+	//NUMBER
+	res = buffer.match(/^\d+(\.\d+)?/);
+	if (res != null) {
+		token = res[0];
+		buffer = buffer.substr(res[0].length);
+		yylval = token - 0; //return numeric-data
+		return NUMBER;
+	}
+	//Text String
+	res = buffer.match(/^".*"|'.*'/);
+	if (res != null) {
+		token = res[0].substr(1, res[0].length - 2);
+		buffer = buffer.substr(res[0].length);
+		return STRING;
+	}
+	//Single symbol
+	token = buffer.substr(0, 1);
     buffer = buffer.substr(1);
     return token.charCodeAt(0);
-  }
 }
+
 
 function yyerror(msg) {
   yyprintln(msg);

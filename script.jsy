@@ -23,17 +23,23 @@ program	:	/* empty */
         ;
 
 stmt	: assign { $$ = $1 + "<br>";}
+		| funcall { $$ = $1 + "<br>";}
 		;
 
-assign	: IDENT '=' primary { $$ = $1 + '=' + $3}
+funcall	: IDENT '(' args ')' { $$ = $1 + '(' + $3 + ')';}
+		| IDENT '(' ')' { $$ = $1 + '()';}
+		;
+
+args	: primary
+		| args ',' primary { $$ = $1 + ',' + $3;}
+		;
+
+assign	: IDENT '=' primary { $$ = $1 + '=' + $3;}
 		;
 
 primary	: NUMBER
 	| IDENT
 	| STRING
-	| COMMENT
-	| '\n' { $$ = "(CR)"; }
-	| error { $$ = ""; }
 	;
 
 %%

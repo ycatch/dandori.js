@@ -22,7 +22,10 @@ program	:	/* empty */
         | program stmt { outputs += $2; setAnswer(outputs); }
         ;
 
-stmt	: primary { $$ = $1 + "<br>";}
+stmt	: assign { $$ = $1 + "<br>";}
+		;
+
+assign	: IDENT '=' primary { $$ = $1 + '=' + $3}
 		;
 
 primary	: NUMBER
@@ -68,7 +71,7 @@ function yylex() {
 	}
 
 	//IDENT
-	res = buffer.match(/^[a-zA-Z_]\w+/);
+	res = buffer.match(/^[a-zA-Z_]\w*/);
 	if (res != null) {
 		token = res[0];
 		buffer = buffer.substr(res[0].length);

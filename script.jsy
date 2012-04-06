@@ -1,12 +1,13 @@
-/* tiny script by kmyacc+JavaScript. */
+/* Tiny script by kmyacc+JavaScript. */
+/*  2012-04-05*/
 
 %{
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>tiny script</title>
+<title>Tiny Script</title>
 <script type="text/javascript">
 <!--
+var outputs = "";
 %}
 
 
@@ -17,41 +18,28 @@
 
 %%
 
-program	:
-		| program line {}
-		;
-		
-line	: stmt {}
-		| stmt COMMENT {}
-		| COMMENT {}
+program	:	/* empty */
+        | program stmt { outputs += $2; setAnswer(outputs); }
+        ;
+
+stmt	: primary { $$ = $1 + "<br>";}
 		;
 
-stmt	: funcall {}
-		| assign {}
-		;
+primary	: NUMBER
+	| IDENT
+	| STRING
+	| COMMENT
+	| '\n' { $$ = "(CR)"; }
+	| error { $$ = ""; }
+	;
 
-funcall	: IDENT '(' args ')' {}
-		| IDENT '(' ')' {}
-		;
-
-args	: primary {}
-		| args ',' primary {}
-		;
-
-assign	: IDENT '=' primary {}
-		;
-
-primary	: IDENT {}
-		| NUMBER
-		| STRING
-		;
-	
 %%
 
 /* Lexical analyzer */
 
 var buffer;
 var token;
+var yylval;
 var toktype;
 
 function yylex() {
@@ -75,6 +63,7 @@ function yylex() {
 			token = buffer.substr(0, index);
 		}
 		buffer = buffer.substr(token.length);
+		yylval = token + ""; 
 		return COMMENT;
 	}
 
@@ -83,6 +72,7 @@ function yylex() {
 	if (res != null) {
 		token = res[0];
 		buffer = buffer.substr(res[0].length);
+		yylval = token + ""; 
 		return IDENT;
 	}
 	//NUMBER
@@ -98,6 +88,7 @@ function yylex() {
 	if (res != null) {
 		token = res[0].substr(1, res[0].length - 2);
 		buffer = buffer.substr(res[0].length);
+		yylval = token + ""; 
 		return STRING;
 	}
 	//Single symbol
@@ -105,7 +96,6 @@ function yylex() {
     buffer = buffer.substr(1);
     return token.charCodeAt(0);
 }
-
 
 function yyerror(msg) {
   yyprintln(msg);
@@ -149,11 +139,18 @@ function writeDivHTML(div,html) {
 }
 
 function setAnswer(ans) {
-  writeDivHTML(getDivFromName("answer"), ans);
+  writeDivHTML(getDivFromName("output"), ans);
+}
+
+function clearAnswer() {
+  calc_vars = {};
+  outputs = "";
+  setAnswer(outputs);
 }
 
 function main() {
   buffer = document.compiledtext.one.value;
+  clearAnswer();
   yyparse();
   return false;
 }
@@ -161,14 +158,14 @@ function main() {
 </script>
 </head>
 <body>
-<p>Enter your script</p>
+<p>Enter your script</p>:
 <form name="compiledtext" id="compiledtext" onsubmit="return main()">
 <textarea name="one" id="one" rows="4" cols="40"></textarea>
-<input name="answer" type="button" value="RUN" onclick="main()">
-<input name="clear" type="reset" value="CLEAR" onclick="clearAnswer()">
+<input name="answer" type="button" value="Run" onclick="main()">
+<input name="clear" type="reset" value="Clear" onclick="clearAnswer()">
 </form>
 <hr>
-<div id="answer">
+<div id="output">
 </div>
 <hr>
 </body>

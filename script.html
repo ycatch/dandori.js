@@ -1,10 +1,10 @@
 
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>tiny script</title>
+<title>Tiny Script</title>
 <script type="text/javascript">
 <!--
+var outputs = "";
 
 /* Prototype file of JavaScript parser.
  * Written by MORI Koichiro
@@ -69,94 +69,88 @@ function yyflush()
 
 
 var yytranslate = [
-      0,   10,   10,   10,   10,   10,   10,   10,   10,   10,
-     10,   10,   10,   10,   10,   10,   10,   10,   10,   10,
-     10,   10,   10,   10,   10,   10,   10,   10,   10,   10,
-     10,   10,   10,   10,   10,   10,   10,   10,   10,   10,
-      6,    7,   10,   10,    8,   10,   10,   10,   10,   10,
-     10,   10,   10,   10,   10,   10,   10,   10,   10,   10,
-     10,    9,   10,   10,   10,   10,   10,   10,   10,   10,
-     10,   10,   10,   10,   10,   10,   10,   10,   10,   10,
-     10,   10,   10,   10,   10,   10,   10,   10,   10,   10,
-     10,   10,   10,   10,   10,   10,   10,   10,   10,   10,
-     10,   10,   10,   10,   10,   10,   10,   10,   10,   10,
-     10,   10,   10,   10,   10,   10,   10,   10,   10,   10,
-     10,   10,   10,   10,   10,   10,   10,   10,   10,   10,
-     10,   10,   10,   10,   10,   10,   10,   10,   10,   10,
-     10,   10,   10,   10,   10,   10,   10,   10,   10,   10,
-     10,   10,   10,   10,   10,   10,   10,   10,   10,   10,
-     10,   10,   10,   10,   10,   10,   10,   10,   10,   10,
-     10,   10,   10,   10,   10,   10,   10,   10,   10,   10,
-     10,   10,   10,   10,   10,   10,   10,   10,   10,   10,
-     10,   10,   10,   10,   10,   10,   10,   10,   10,   10,
-     10,   10,   10,   10,   10,   10,   10,   10,   10,   10,
-     10,   10,   10,   10,   10,   10,   10,   10,   10,   10,
-     10,   10,   10,   10,   10,   10,   10,   10,   10,   10,
-     10,   10,   10,   10,   10,   10,   10,   10,   10,   10,
-     10,   10,   10,   10,   10,   10,   10,   10,   10,   10,
-     10,   10,   10,   10,   10,   10,    1,    2,    3,    4,
+      0,    7,    7,    7,    7,    7,    7,    7,    7,    7,
+      6,    7,    7,    7,    7,    7,    7,    7,    7,    7,
+      7,    7,    7,    7,    7,    7,    7,    7,    7,    7,
+      7,    7,    7,    7,    7,    7,    7,    7,    7,    7,
+      7,    7,    7,    7,    7,    7,    7,    7,    7,    7,
+      7,    7,    7,    7,    7,    7,    7,    7,    7,    7,
+      7,    7,    7,    7,    7,    7,    7,    7,    7,    7,
+      7,    7,    7,    7,    7,    7,    7,    7,    7,    7,
+      7,    7,    7,    7,    7,    7,    7,    7,    7,    7,
+      7,    7,    7,    7,    7,    7,    7,    7,    7,    7,
+      7,    7,    7,    7,    7,    7,    7,    7,    7,    7,
+      7,    7,    7,    7,    7,    7,    7,    7,    7,    7,
+      7,    7,    7,    7,    7,    7,    7,    7,    7,    7,
+      7,    7,    7,    7,    7,    7,    7,    7,    7,    7,
+      7,    7,    7,    7,    7,    7,    7,    7,    7,    7,
+      7,    7,    7,    7,    7,    7,    7,    7,    7,    7,
+      7,    7,    7,    7,    7,    7,    7,    7,    7,    7,
+      7,    7,    7,    7,    7,    7,    7,    7,    7,    7,
+      7,    7,    7,    7,    7,    7,    7,    7,    7,    7,
+      7,    7,    7,    7,    7,    7,    7,    7,    7,    7,
+      7,    7,    7,    7,    7,    7,    7,    7,    7,    7,
+      7,    7,    7,    7,    7,    7,    7,    7,    7,    7,
+      7,    7,    7,    7,    7,    7,    7,    7,    7,    7,
+      7,    7,    7,    7,    7,    7,    7,    7,    7,    7,
+      7,    7,    7,    7,    7,    7,    7,    7,    7,    7,
+      7,    7,    7,    7,    7,    7,    1,    2,    3,    4,
       5
   ];
 
-var YYBADCH = 10;
+var YYBADCH = 7;
 var YYMAXLEX = 261;
-var YYTERMS = 10;
-var YYNONTERMS = 8;
+var YYTERMS = 7;
+var YYNONTERMS = 4;
 
 var yyaction = [
-      1,    0,   12,    3,    5,   17,   13,   22,   21,   23,
-     16,    4
+      0,    0,   11,    6,    7,    8,    9,   10
   ];
 
-var YYLAST = 12;
+var YYLAST = 8;
 
 var yycheck = [
-      6,    0,    5,    9,    3,    7,    5,    2,    3,    4,
-      7,    8
+     -1,    0,    1,    2,    3,    4,    5,    6
   ];
 
 var yybase = [
-      0,   -2,    1,    5,    5,   -6,    3,   -3,    0,    5
+      0,    1
   ];
 
-var YY2TBLSTATE = 2;
+var YY2TBLSTATE = 0;
 
 var yydefault = [
-      1,32767,32767,32767,32767,32767,32767,    3
+      1,32767
   ];
 
 
 
 var yygoto = [
-     20,   19
   ];
 
-var YYGLAST = 2;
+var YYGLAST = 0;
 
 var yygcheck = [
-      7,    7
   ];
 
 var yygbase = [
-      0,    0,    0,    0,    0,    0,    0,   -3
+      0,    0,    0,    0
   ];
 
 var yygdefault = [
-  -32768,    2,   10,    7,   14,   15,    6,   18
+  -32768,    1,    4,    5
   ];
 
 var yylhs = [
-      0,    1,    1,    2,    2,    2,    3,    3,    4,    4,
-      6,    6,    5,    7,    7,    7
+      0,    1,    1,    2,    3,    3,    3,    3,    3,    3
   ];
 
 var yylen = [
-      1,    0,    2,    1,    2,    1,    1,    1,    4,    3,
-      1,    3,    3,    1,    1,    1
+      1,    0,    2,    1,    1,    1,    1,    1,    1,    1
   ];
 
-var YYSTATES = 21;
-var YYNLSTATES = 8;
+var YYSTATES = 10;
+var YYNLSTATES = 2;
 var YYINTERRTOK = 1;
 var YYUNEXPECTED = 32767;
 var YYDEFAULT = -32766;
@@ -233,29 +227,13 @@ function yyparse()
         /* Following line will be replaced by reduce actions */
         switch(yyn) {
         case 2:
-{} break;
+{ outputs += yyastk[yysp-(2-2)]; setAnswer(outputs); } break;
         case 3:
-{} break;
-        case 4:
-{} break;
-        case 5:
-{} break;
-        case 6:
-{} break;
-        case 7:
-{} break;
+{ yyval = yyastk[yysp-(1-1)] + "<br>";} break;
         case 8:
-{} break;
+{ yyval = "(CR)"; } break;
         case 9:
-{} break;
-        case 10:
-{} break;
-        case 11:
-{} break;
-        case 12:
-{} break;
-        case 13:
-{} break;
+{ yyval = ""; } break;
         }
         /* Goto - shift nonterminal */
         yysp -= yyl;
@@ -320,6 +298,7 @@ function yyparse()
 
 var buffer;
 var token;
+var yylval;
 var toktype;
 
 function yylex() {
@@ -343,6 +322,7 @@ function yylex() {
 			token = buffer.substr(0, index);
 		}
 		buffer = buffer.substr(token.length);
+		yylval = token + ""; 
 		return COMMENT;
 	}
 
@@ -351,6 +331,7 @@ function yylex() {
 	if (res != null) {
 		token = res[0];
 		buffer = buffer.substr(res[0].length);
+		yylval = token + ""; 
 		return IDENT;
 	}
 	//NUMBER
@@ -366,6 +347,7 @@ function yylex() {
 	if (res != null) {
 		token = res[0].substr(1, res[0].length - 2);
 		buffer = buffer.substr(res[0].length);
+		yylval = token + ""; 
 		return STRING;
 	}
 	//Single symbol
@@ -373,7 +355,6 @@ function yylex() {
     buffer = buffer.substr(1);
     return token.charCodeAt(0);
 }
-
 
 function yyerror(msg) {
   yyprintln(msg);
@@ -417,11 +398,18 @@ function writeDivHTML(div,html) {
 }
 
 function setAnswer(ans) {
-  writeDivHTML(getDivFromName("answer"), ans);
+  writeDivHTML(getDivFromName("output"), ans);
+}
+
+function clearAnswer() {
+  calc_vars = {};
+  outputs = "";
+  setAnswer(outputs);
 }
 
 function main() {
   buffer = document.compiledtext.one.value;
+  clearAnswer();
   yyparse();
   return false;
 }
@@ -429,14 +417,14 @@ function main() {
 </script>
 </head>
 <body>
-<p>Enter your script</p>
+<p>Enter your script</p>:
 <form name="compiledtext" id="compiledtext" onsubmit="return main()">
 <textarea name="one" id="one" rows="4" cols="40"></textarea>
-<input name="answer" type="button" value="RUN" onclick="main()">
-<input name="clear" type="reset" value="CLEAR" onclick="clearAnswer()">
+<input name="answer" type="button" value="Run" onclick="main()">
+<input name="clear" type="reset" value="Clear" onclick="clearAnswer()">
 </form>
 <hr>
-<div id="answer">
+<div id="output">
 </div>
 <hr>
 </body>

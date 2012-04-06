@@ -19,11 +19,15 @@ var outputs = "";
 %%
 
 program	:	/* empty */
-        | program stmt { outputs += $2; setAnswer(outputs); }
+        | program line { outputs += $2; setAnswer(outputs); }
         ;
 
-stmt	: assign { $$ = $1 + "<br>";}
-		| funcall { $$ = $1 + "<br>";}
+line	: stmt { $$ = $1 + "<br>";}
+		| COMMENT { $$ = $1 + "<br>";}
+		;
+
+stmt	: assign
+		| funcall
 		;
 
 funcall	: IDENT '(' args ')' { $$ = $1 + '(' + $3 + ')';}

@@ -14,7 +14,7 @@ var outputs = "";
 %token NUMBER IDENT STRING COMMENT
 
 %left '+' '-'
-%left '*' '/'
+%left '*' '/' '%'
 
 %%
 
@@ -34,12 +34,22 @@ funcall	: IDENT '(' args ')' { $$ = $1 + '(' + $3 + ')';}
 		| IDENT '(' ')' { $$ = $1 + '()';}
 		;
 
-args	: primary
-		| args ',' primary { $$ = $1 + ',' + $3;}
+args	: expr
+		| args ',' expr { $$ = $1 + ',' + $3;}
 		;
 
-assign	: IDENT '=' primary { $$ = $1 + '=' + $3;}
+assign	: IDENT '=' expr { $$ = $1 + '=' + $3;}
 		;
+
+expr	: expr '+' expr { $$ = $1 + '+' + $3; }
+	| expr '-' expr { $$ = $1 + '-' + $3; }
+	| expr '*' expr { $$ = $1 + '*' + $3; }
+	| expr '/' expr { $$ = $1 + '/' + $3; }
+	| expr '%' expr { $$ = $1 + '%' + $3; }
+	| '(' expr ')' { $$ = $2; }
+	| funcall
+	| primary
+	;
 
 primary	: NUMBER
 	| IDENT

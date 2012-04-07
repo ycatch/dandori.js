@@ -265,7 +265,7 @@ function yyparse()
         case 16:
 { yyval = yyastk[yysp-(3-1)] + '%' + yyastk[yysp-(3-3)]; } break;
         case 17:
-{ yyval = yyastk[yysp-(3-2)]; } break;
+{ yyval = '(' + yyastk[yysp-(3-2)] + ')'; } break;
         }
         /* Goto - shift nonterminal */
         yysp -= yyl;

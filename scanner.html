@@ -1,0 +1,171 @@
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>tiny script - scanner</title>
+<script type="text/javascript">
+<!--
+
+/* Prototype file of JavaScript parser.
+ * Written by MORI Koichiro
+ * This file is PUBLIC DOMAIN.
+ */
+
+var buffer, temp;
+var token;
+var toktype;
+var output = "";
+
+var NUMBER = 257;
+var IDENT = 258;
+var STRING = 259;
+
+/* test for Lexical analyzer */
+
+ function yyscan_test()
+{
+	var index, yychar, temp;
+	while (buffer != "") {
+		index = buffer.indexOf("\n");
+		if (index == "-1") {
+			temp = buffer;
+		} else {
+			temp = buffer.substr(0, index);	//bufferから1行目を取り出す
+		}
+		yychar = yylex();
+		
+		output = output + index + " : " + temp 
+						+ ",token : " + token
+						+ ",yylex : " + yychar + "<br>";
+	}
+
+	setAnswer(output);
+}
+
+
+/* Lexical analyzer */
+
+var yylval;
+
+function yylex() {
+	//cut for space and tabs
+	var res = buffer.match(/^\s+/);
+	if (res != null) {
+		buffer = buffer.substr(res[0].length);
+	}
+	//Empty
+	if (buffer.length == 0) {
+		return 0;
+	}
+	
+	//Comment
+	res = buffer.match(/^\/+/);
+	if (res != null) {
+		var index = buffer.indexOf("\n");
+		if (index == "-1") {
+			token = buffer;
+		} else {
+			token = buffer.substr(0, index);
+		}
+		buffer = buffer.substr(token.length);
+		yylval = token + "";
+		return "COMMENT1";
+	}
+
+	//IDENT
+	res = buffer.match(/^[a-zA-Z_]\w*/);
+	if (res != null) {
+		token = res[0];
+		buffer = buffer.substr(res[0].length);
+		yylval = token + "";
+		return IDENT;
+	}
+	//NUMBER
+	res = buffer.match(/^\d+(\.\d+)?/);
+	if (res != null) {
+		token = res[0];
+		buffer = buffer.substr(res[0].length);
+		yylval = token - 0; //return numeric-data
+		return NUMBER;
+	}
+	//Text String
+	res = buffer.match(/^".*"|'.*'/);
+	if (res != null) {
+		token = res[0].substr(1, res[0].length - 2);
+		buffer = buffer.substr(res[0].length);
+		yylval = token + "";
+		return STRING;
+	}
+	//Single symbol
+	token = buffer.substr(0, 1);
+    buffer = buffer.substr(1);
+    return token.charCodeAt(0);
+}
+
+function yyerror(msg) {
+  yyprintln(msg);
+}
+
+var _bro = (window.opera?
+            4:(window.external?3:(window.controllers?1:(document.layers?2:0))));
+var _ie5 = (navigator.appName.indexOf('Microsoft Internet Explorer')>=0 &&
+            document.getElementById)?1:0;
+
+// C
+// _dom : kind of DOM.
+//        IE4 = 1, IE5+ = 2, NN4 = 3, NN6+ = 4, others = 0
+var _dom =  document.all ? (document.getElementById ? 2 : 1)
+           : document.getElementById ? 4
+           : document.layers ? 3 : 0;
+
+function getDivFromName(nm) {
+  if (_dom==4 || _dom==2)
+    return document.getElementById(nm);
+  if (_dom==1)
+    return document.all(nm);
+  if (_dom==3) {
+    var s = '';
+    for (var i = 1; i < arguments.length; i++)
+      s += 'document.layers.'+arguments[i]+'.';
+    return eval(s+'document.layers.'+nm);
+  }
+  return null;
+}
+
+function writeDivHTML(div,html) { 
+  if (document.layers) {
+    div.document.open();
+    div.document.write(html);
+    div.document.close();
+  }
+  else if (typeof div.innerHTML!="undefined") { 
+    div.innerHTML = html;
+  }
+}
+
+function setAnswer(ans) {
+  writeDivHTML(getDivFromName("answer"), ans);
+}
+
+function main() {
+  buffer = document.compiledtext.one.value;
+  //yyparse();
+  yyscan_test();
+  return false;
+}
+// -->
+</script>
+</head>
+<body>
+<p>Enter your script</p>
+<form name="compiledtext" id="compiledtext" onsubmit="return main()">
+<textarea name="one" id="one" rows="4" cols="40"></textarea>
+<input name="answer" type="button" value="RUN" onclick="main()">
+<input name="clear" type="reset" value="CLEAR" onclick="clearAnswer()">
+</form>
+<hr>
+<div id="answer">
+</div>
+<hr>
+</body>
+</html>

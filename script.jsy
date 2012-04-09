@@ -7,7 +7,6 @@
 <title>Tiny Script</title>
 <script type="text/javascript">
 <!--
-var outputs = "";
 %}
 
 
@@ -18,12 +17,11 @@ var outputs = "";
 
 %%
 
-program	: stmt_list { outputs = $1; setAnswer(outputs); }
+program	: stmt_list { setAnswer($1); }
         ;
 
-stmt_list :	/* empty */
+stmt_list : { $$ = "";}
 		| stmt_list stmt { $$ = $1 + $2 + "<br>";}
-		| stmt_list
 		;
 
 stmt	: assign

@@ -4,7 +4,6 @@
 <title>Tiny Script</title>
 <script type="text/javascript">
 <!--
-var outputs = "";
 
 /* Prototype file of JavaScript parser.
  * Written by MORI Koichiro
@@ -104,9 +103,9 @@ var YYTERMS = 15;
 var YYNONTERMS = 9;
 
 var yyaction = [
-     42,   20,   44,    9,   10,    9,   10,    0,   17,    7,
-     28,   39,   11,   12,   13,   29,    8,    2,    0,    0,
-     30,    0,    0,    6
+     41,   20,   43,    9,   10,    9,   10,    0,   17,    7,
+     27,   38,   11,   12,   13,   28,    8,    2,    0,    0,
+     29,    0,    0,    6
   ];
 
 var YYLAST = 24;
@@ -127,15 +126,15 @@ var yybase = [
 var YY2TBLSTATE = 18;
 
 var yydefault = [
-      2,32767,32767,   10,   12,   11,32767,32767,32767,32767,
-  32767,32767,32767,32767,   13,   14,    1,32767,32767,32767,
-     22
+      2,32767,32767,    9,   11,   10,32767,32767,32767,32767,
+  32767,32767,32767,32767,   12,   13,    1,32767,32767,32767,
+     21
   ];
 
 
 
 var yygoto = [
-      4,    1,    5,   14,   15,   36,   37,   38,   27
+      4,    1,    5,   14,   15,   35,   36,   37,   26
   ];
 
 var YYGLAST = 9;
@@ -149,19 +148,19 @@ var yygbase = [
   ];
 
 var yygdefault = [
-  -32768,   19,   16,   24,   26,   40,   18,    3,   41
+  -32768,   19,   16,   24,   25,   39,   18,    3,   40
   ];
 
 var yylhs = [
-      0,    1,    2,    2,    2,    3,    3,    3,    5,    5,
-      6,    6,    4,    7,    7,    7,    7,    7,    7,    7,
-      7,    8,    8,    8
+      0,    1,    2,    2,    3,    3,    3,    5,    5,    6,
+      6,    4,    7,    7,    7,    7,    7,    7,    7,    7,
+      8,    8,    8
   ];
 
 var yylen = [
-      1,    1,    0,    2,    1,    1,    1,    1,    4,    3,
-      1,    3,    3,    3,    3,    3,    3,    3,    3,    1,
-      1,    1,    1,    1
+      1,    1,    0,    2,    1,    1,    1,    4,    3,    1,
+      3,    3,    3,    3,    3,    3,    3,    3,    1,    1,
+      1,    1,    1
   ];
 
 var YYSTATES = 35;
@@ -242,28 +241,30 @@ function yyparse()
         /* Following line will be replaced by reduce actions */
         switch(yyn) {
         case 1:
-{ outputs = yyastk[yysp-(1-1)]; setAnswer(outputs); } break;
+{ setAnswer(yyastk[yysp-(1-1)]); } break;
+        case 2:
+{ yyval = "";} break;
         case 3:
 { yyval = yyastk[yysp-(2-1)] + yyastk[yysp-(2-2)] + "<br>";} break;
-        case 8:
+        case 7:
 { yyval = yyastk[yysp-(4-1)] + '(' + yyastk[yysp-(4-3)] + ')';} break;
-        case 9:
+        case 8:
 { yyval = yyastk[yysp-(3-1)] + '()';} break;
-        case 11:
+        case 10:
 { yyval = yyastk[yysp-(3-1)] + ',' + yyastk[yysp-(3-3)];} break;
-        case 12:
+        case 11:
 { yyval = yyastk[yysp-(3-1)] + '=' + yyastk[yysp-(3-3)];} break;
-        case 13:
+        case 12:
 { yyval = yyastk[yysp-(3-1)] + '+' + yyastk[yysp-(3-3)]; } break;
-        case 14:
+        case 13:
 { yyval = yyastk[yysp-(3-1)] + '-' + yyastk[yysp-(3-3)]; } break;
-        case 15:
+        case 14:
 { yyval = yyastk[yysp-(3-1)] + '*' + yyastk[yysp-(3-3)]; } break;
-        case 16:
+        case 15:
 { yyval = yyastk[yysp-(3-1)] + '/' + yyastk[yysp-(3-3)]; } break;
-        case 17:
+        case 16:
 { yyval = yyastk[yysp-(3-1)] + '%' + yyastk[yysp-(3-3)]; } break;
-        case 18:
+        case 17:
 { yyval = '(' + yyastk[yysp-(3-2)] + ')'; } break;
         }
         /* Goto - shift nonterminal */

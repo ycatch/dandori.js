@@ -18,16 +18,17 @@ var outputs = "";
 
 %%
 
-program	:	/* empty */
-        | program line { outputs += $2; setAnswer(outputs); }
+program	: stmt_list { outputs = $1; setAnswer(outputs); }
         ;
 
-line	: stmt { $$ = $1 + "<br>";}
-		| COMMENT { $$ = $1 + "<br>";}
+stmt_list :	/* empty */
+		| stmt_list stmt { $$ = $1 + $2 + "<br>";}
+		| stmt_list
 		;
 
 stmt	: assign
 		| funcall
+		| COMMENT
 		;
 
 funcall	: IDENT '(' args ')' { $$ = $1 + '(' + $3 + ')';}

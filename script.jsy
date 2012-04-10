@@ -1,5 +1,5 @@
 /* Tiny script by kmyacc+JavaScript. */
-/*  2012-04-05*/
+/* 2012-04-05*/
 
 %{
 <html>
@@ -17,43 +17,54 @@
 
 %%
 
-program	: stmt_list { setAnswer($1); }
+program : stmt_list { setAnswer($1); }
         ;
 
-stmt_list : { $$ = "";}
-		| stmt_list stmt { $$ = $1 + $2 + "<br>";}
-		;
+stmt_list : { $$ = '';}
+| stmt_list stmt { $$ = $1 + $2+ '<br>';}
+;
 
-stmt	: assign
-		| funcall
-		| COMMENT
-		;
+stmt : assign { $$ = $1 + ';' }
+| funcall { $$ = $1 + ';' }
+| def_func
+| COMMENT
+;
 
-funcall	: IDENT '(' args ')' { $$ = $1 + '(' + $3 + ')';}
-		| IDENT '(' ')' { $$ = $1 + '()';}
-		;
+funcall : IDENT '(' args ')' { $$ = $1 + '(' + $3 + ')';}
+| IDENT '(' ')' { $$ = $1 + '()';}
+;
 
-args	: expr
-		| args ',' expr { $$ = $1 + ',' + $3;}
-		;
+args : expr
+| args ',' expr { $$ = $1 + ',' + $3;}
+;
 
-assign	: IDENT '=' expr { $$ = $1 + '=' + $3;}
-		;
+assign : IDENT '=' expr { $$ = $1 + '=' + $3;}
+;
 
-expr	: expr '+' expr { $$ = $1 + '+' + $3; }
-	| expr '-' expr { $$ = $1 + '-' + $3; }
-	| expr '*' expr { $$ = $1 + '*' + $3; }
-	| expr '/' expr { $$ = $1 + '/' + $3; }
-	| expr '%' expr { $$ = $1 + '%' + $3; }
-	| '(' expr ')' { $$ = '(' + $2 + ')'; }
-	| funcall
-	| primary
+def_func : IDENT IDENT '(' args ')' '{' stmt_list '}' 
+		{ $$ = $1 + ' ' + $2 + '(' + $4 + ')' + '{' + '\n' + $7 + '}';}
+	| IDENT IDENT '(' args ')'  '{' '}' 
+		{ $$ = $1 + ' ' + $2 + '(' + $4 + ')' + '{}';}
+	| IDENT IDENT '(' ')' '{' stmt_list '}' 
+		{ $$ = $1 + ' ' + $2 + '()' + '{' + '\n' + $6 + '}';}
+	| IDENT IDENT '(' ')'  '{' '}' 
+		{ $$ = $1 + ' ' + $2 + '()' + '{}';}
 	;
 
-primary	: NUMBER
-	| IDENT
-	| STRING
-	;
+expr : expr '+' expr { $$ = $1 + '+' + $3; }
+| expr '-' expr { $$ = $1 + '-' + $3; }
+| expr '*' expr { $$ = $1 + '*' + $3; }
+| expr '/' expr { $$ = $1 + '/' + $3; }
+| expr '%' expr { $$ = $1 + '%' + $3; }
+| '(' expr ')' { $$ = '(' + $2 + ')'; }
+| funcall
+| primary
+;
+
+primary : NUMBER
+| IDENT
+| STRING
+;
 
 %%
 
@@ -65,56 +76,56 @@ var yylval;
 var toktype;
 
 function yylex() {
-	//cut for space and tabs
-	var res = buffer.match(/^\s+/);
-	if (res != null) {
-		buffer = buffer.substr(res[0].length);
-	}
-	//Empty
-	if (buffer.length == 0) {
-		return 0;
-	}
-	
-	//COMMENT
-	res = buffer.match(/^\/+/);
-	if (res != null) {
-		var index = buffer.indexOf("\n");
-		if (index == "-1") {
-			token = buffer;
-		} else {
-			token = buffer.substr(0, index);
-		}
-		buffer = buffer.substr(token.length);
-		yylval = token + ""; 
-		return COMMENT;
-	}
+//cut for space and tabs
+var res = buffer.match(/^\s+/);
+if (res != null) {
+buffer = buffer.substr(res[0].length);
+}
+//Empty
+if (buffer.length == 0) {
+return 0;
+}
 
-	//IDENT
-	res = buffer.match(/^[a-zA-Z_]\w*/);
-	if (res != null) {
-		token = res[0];
-		buffer = buffer.substr(res[0].length);
-		yylval = token + ""; 
-		return IDENT;
-	}
-	//NUMBER
-	res = buffer.match(/^\d+(\.\d+)?/);
-	if (res != null) {
-		token = res[0];
-		buffer = buffer.substr(res[0].length);
-		yylval = token - 0; //return numeric-data
-		return NUMBER;
-	}
-	//Text String
-	res = buffer.match(/^".*"|'.*'/);
-	if (res != null) {
-		token = res[0].substr(1, res[0].length - 2);
-		buffer = buffer.substr(res[0].length);
-		yylval = token + ""; 
-		return STRING;
-	}
-	//Single symbol
-	token = buffer.substr(0, 1);
+//COMMENT
+res = buffer.match(/^\/\//);
+if (res != null) {
+var index = buffer.indexOf("\n");
+if (index == "-1") {
+token = buffer;
+} else {
+token = buffer.substr(0, index);
+}
+buffer = buffer.substr(token.length);
+yylval = token + "";
+return COMMENT;
+}
+
+//IDENT
+res = buffer.match(/^[a-zA-Z_]\w*/);
+if (res != null) {
+token = res[0];
+buffer = buffer.substr(res[0].length);
+yylval = token + "";
+return IDENT;
+}
+//NUMBER
+res = buffer.match(/^\d+(\.\d+)?/);
+if (res != null) {
+token = res[0];
+buffer = buffer.substr(res[0].length);
+yylval = token - 0; //return numeric-data
+return NUMBER;
+}
+//Text String
+res = buffer.match(/^".*"|'.*'/);
+if (res != null) {
+token = res[0];
+buffer = buffer.substr(res[0].length);
+yylval = token + "";
+return STRING;
+}
+//Single symbol
+token = buffer.substr(0, 1);
     buffer = buffer.substr(1);
     return token.charCodeAt(0);
 }
@@ -130,8 +141,8 @@ var _ie5 = (navigator.appName.indexOf('Microsoft Internet Explorer')>=0 &&
 
 // C
 // _dom : kind of DOM.
-//        IE4 = 1, IE5+ = 2, NN4 = 3, NN6+ = 4, others = 0
-var _dom =  document.all ? (document.getElementById ? 2 : 1)
+// IE4 = 1, IE5+ = 2, NN4 = 3, NN6+ = 4, others = 0
+var _dom = document.all ? (document.getElementById ? 2 : 1)
            : document.getElementById ? 4
            : document.layers ? 3 : 0;
 
@@ -149,13 +160,13 @@ function getDivFromName(nm) {
   return null;
 }
 
-function writeDivHTML(div,html) { 
+function writeDivHTML(div,html) {
   if (document.layers) {
     div.document.open();
     div.document.write(html);
     div.document.close();
   }
-  else if (typeof div.innerHTML!="undefined") { 
+  else if (typeof div.innerHTML!="undefined") {
     div.innerHTML = html;
   }
 }

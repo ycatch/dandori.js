@@ -59,7 +59,7 @@ function yylex() {
 	}
 	
 	//Comment
-	res = buffer.match(/^\/+/);
+	res = buffer.match(/^\/\//);
 	if (res != null) {
 		var index = buffer.indexOf("\n");
 		if (index == "-1") {
@@ -91,7 +91,7 @@ function yylex() {
 	//Text String
 	res = buffer.match(/^".*"|'.*'/);
 	if (res != null) {
-		token = res[0].substr(1, res[0].length - 2);
+		token = res[0];
 		buffer = buffer.substr(res[0].length);
 		yylval = token + "";
 		return STRING;
